@@ -1,6 +1,6 @@
 # Expense-Tracker
 
-## Client side- vue
+## Client side- Vue
 Go to the `frontend` directory and then run the following:
 ```
 yarn install
