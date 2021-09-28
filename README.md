@@ -1,6 +1,6 @@
 # Expense-Tracker
 
-## Vue Server
+## Client side- vue
 Go to the `frontend` directory and then run the following:
 ```
 yarn install
@@ -9,7 +9,7 @@ yarn dev
 
 
 
-## Django server
+## Server side- Django
 
 Go back to the `backend `  directory and run the following to start the django server
 ```
