@@ -8,6 +8,7 @@ from rest_framework import status
 from .models import Expense
 from .serializers import (
     ExpenseSerializer,
+    RegisterSerializer,
 )
 
 
@@ -55,3 +56,12 @@ class ExpenseDetail(APIView):
         expense = self.get_object(pk)
         expense.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class RegisterView(APIView):
+    def post(self, request, format=None):
+        serializer = RegisterSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
