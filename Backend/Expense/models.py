@@ -1,5 +1,5 @@
 from django.db import models
-
+from users.models import CustomUser
 
 # Create your models here.
 class Expense(models.Model):
@@ -26,16 +26,20 @@ class Expense(models.Model):
     )
 
     name = models.CharField(max_length=50, choices=CHOICES)
-    amount = models.CharField(max_length=50)
+    amount = models.IntegerField()
+    owner = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="user_expense")
     date = models.DateField(auto_now=False, auto_now_add=False)
     note = models.CharField(max_length=50)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         """Meta definition for Expense."""
 
         verbose_name = "Expense"
         verbose_name_plural = "Expenses"
+        ordering= ['-updated_at']
 
     def __str__(self):
         """Unicode representation of Expense."""
-        return self.name
+        return str(self.name) + str(self.owner)
